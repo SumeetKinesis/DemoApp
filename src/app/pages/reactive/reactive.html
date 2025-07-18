@@ -1,0 +1,12 @@
+<div class="container">
+    <form>
+        <label>Name</label>
+        <input class="form-control" type="text" name="name">
+        <label>Email</label>
+        <input class="form-control" type="email" name="email">
+        <label>Gender</label>
+        <div *ngFor="let gender of radio">
+            <label><input type="radio" name="gender" [value]="gender"/>{{gender}}</label>
+        </div>
+    </form>
+</div>

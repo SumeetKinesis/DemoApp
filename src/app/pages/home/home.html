@@ -1,3 +1,63 @@
-<p>home works!</p>
-<button type="button" class="btn btn-primary text-center">Click</button>
-<h1>Sumeet</h1>
+<div class="container">
+    <h2>Form</h2>
+    <form class="form-group" (ngSubmit)="submit()" #f="ngForm">
+        <div class="form-group">
+            <label for="username">Name</label>
+        <input type="text" id="username" class="form-control" name="username" (input)="changes()" ngModel required
+            #username="ngModel">
+        <span *ngIf="username.invalid && username.touched" style="color:red">Please enter name</span><br>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+        <input type="text" id="email" class="form-control" name="email" ngModel required>
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender</label>
+        <select id="gender" class="form-control" name="gneder" ngModel>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+        </div>
+
+        <button type="sumbit" class="btn btn-primary mt-2" [disabled]="!f.valid">Submit</button>
+        
+    </form>
+
+    <button (click)="hideShow()" class="btn btn-info">Click</button>
+
+    <div class="reactive" *ngIf="reactive">
+        <app-reactive></app-reactive>
+    </div>
+
+
+    <table class="table">
+       <thead>
+         <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Description</th>
+        </tr>
+       </thead>
+       <tbody>
+        <tr *ngFor="let item of products">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td><img [src]="item.image"/></td>
+            <td>{{item.category}}</td>
+            <td>{{item.price}}</td>
+            <td>{{item.status}}</td>
+            <td>{{item.description}}</td>
+            <td>
+                <div class="new">
+                    <button class="btn btn-primary m-1" (click)="inStock(item.id, 'in-stock')">in-Stock</button>
+                    <button class="btn btn-info m-1" (click)="outOfStock(item.id, 'out-of-stock')">out-of-Stock</button>
+                    <button class="btn btn-warning m-1" (click)="preOrder(item.id, 'pre-order')">pre-order</button>
+                </div>
+            </td>
+        </tr>
+       </tbody>
+    </table>
+</div>
